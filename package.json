@@ -1,0 +1,124 @@
+{
+	"name": "logger",
+	"version": "1.0.0",
+	"license": "ISC",
+	"author": "Harry Wright",
+	"main": "./dist/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://git@github.com/harrytwright/Logger.git"
+	},
+	"scripts": {
+		"build": "babel src -d dist --source-maps inline --copy-files",
+		"install": "npm run-script build"
+	},
+	"dependencies": {
+		"lodash": "^4.17.11",
+		"bunyan": "^1.8.12",
+		"bunyan-rotating-file-stream": "^1.6.3"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.2.2",
+		"@babel/node": "^7.2.2",
+		"@babel/polyfill": "^7.2.5",
+		"@babel/preset-env": "^7.2.3",
+		"@babel/register": "^7.0.0",
+		"eslint": "^5.12.0",
+		"eslint-plugin-import": "^2.17.2"
+	},
+	"eslintConfig": {
+		"extends": [
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"ecmaVersion": 9,
+			"sourceType": "module"
+		},
+		"env": {
+			"node": true,
+			"mocha": true,
+			"es6": true
+		},
+		"plugins": [
+			"import"
+		],
+		"rules": {
+			"import/first": [
+				"error",
+				{
+					"absolute-first": 1
+				}
+			],
+			"import/order": [
+				"error",
+				{
+					"newlines-between": "always"
+				}
+			],
+			"comma-style": "error",
+			"consistent-this": [
+				"error",
+				"_this"
+			],
+			"indent": [
+				"error",
+				2,
+				{
+					"SwitchCase": 1,
+					"VariableDeclarator": 2
+				}
+			],
+			"keyword-spacing": "error",
+			"no-useless-constructor": "warn",
+			"no-buffer-constructor": "warn",
+			"no-console": "off",
+			"no-multi-spaces": "error",
+			"func-call-spacing": "error",
+			"no-trailing-spaces": "error",
+			"no-nested-ternary": "error",
+			"quotes": [
+				"error",
+				"single"
+			],
+			"one-var": [
+				"error",
+				"never"
+			],
+			"prefer-template": "error",
+			"semi": "error",
+			"space-before-blocks": "error",
+			"space-before-function-paren": [
+				"error",
+				"never"
+			],
+			"no-plusplus": "error",
+			"spaced-comment": "warn",
+			"eqeqeq": "error",
+			"space-infix-ops": "error",
+			"space-unary-ops": "error",
+			"no-var": "warn",
+			"prefer-const": "warn",
+			"strict": [
+				"error",
+				"global"
+			],
+			"no-multiple-empty-lines": "error",
+			"space-in-parens": "error",
+			"array-bracket-spacing": "error",
+			"object-curly-newline": "error",
+			"object-curly-spacing": [
+				"error",
+				"always"
+			],
+			"max-len": [
+				"error",
+				{
+					"code": 120,
+					"tabWidth": 2,
+					"comments": 80
+				}
+			]
+		}
+	}
+}
