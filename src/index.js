@@ -3,9 +3,16 @@ import util from 'util';
 import path from 'path';
 
 import _ from 'lodash';
-import debug from 'debug';
 import bunyan from 'bunyan';
 import RotatingFileStream from 'bunyan-rotating-file-stream';
+
+// Move debug to optional, if not use `util.debuglog`
+let debug;
+try {
+  debug = require('debug');
+} catch (err) {
+  debug = util.debuglog;
+}
 
 const _debug = debug('logger');
 
@@ -272,8 +279,15 @@ function Logger(name, level = INFO) {
   return createLoggerWithNamespace;
 }
 
+let defaultLevel;
+try {
+  defaultLevel = resolveLevel(process.env.LOGGER_LEVEL);
+} catch (error) {
+  _debug(error.message);
+  defaultLevel = INFO;
+}
 
-const defaultLogger = new Logger(process.env.npm_package_name || 'logger', INFO);
+const defaultLogger = new Logger(process.env.LOGGER_NAME || 'logger', defaultLevel);
 module.exports = defaultLogger;
 module.exports.Logger = Logger;
 
