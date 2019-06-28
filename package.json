@@ -10,7 +10,11 @@
 	},
 	"scripts": {
 		"build": "babel src -d dist --source-maps inline --copy-files",
-		"prepublish": "npm run-script build"
+		"prepublishOnly": "npm run lint",
+		"prepublish": "npm run build",
+		"postpublish": "rm -R ./dist",
+		"test": "nodemon test/stress.js --exec babel-node | ./node_modules/.bin/bunyan -o short",
+		"lint": "eslint ./src --fix"
 	},
 	"dependencies": {
 		"bunyan": "^1.8.12",
@@ -28,7 +32,8 @@
 		"@babel/preset-env": "^7.2.3",
 		"@babel/register": "^7.0.0",
 		"eslint": "^5.12.0",
-		"eslint-plugin-import": "^2.17.2"
+		"eslint-plugin-import": "^2.17.2",
+		"nodemon": "^1.19.1"
 	},
 	"eslintConfig": {
 		"extends": [

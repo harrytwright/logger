@@ -1,5 +1,5 @@
 require('./common');
-const logger = require('../dist');
+const logger = require('../src');
 
 const newLogger = new logger.Logger('Tester')('loggie');
 newLogger('hello world');
@@ -10,5 +10,18 @@ const log = logger('tester');
 log('hello world');
 log('Or is this me');
 
+setTimeout(() => {
+  const internalLog = new logger.Logger('DB')('test');
+  internalLog('Throwing an error', new Error('Wow'), 'error');
 
-setTimeout(() => process.exit(1), 1000);
+  process.exit(1);
+}, 500);
+
+// setTimeout(() => {
+//   const internalLog = new logger.Logger('cache')('test');
+//   internalLog('Throwing another error', new Error('Wow again wtf'), 'error');
+//
+//   process.exit(1);
+// }, 1000);
+
+
