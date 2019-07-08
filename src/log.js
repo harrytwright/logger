@@ -9,7 +9,6 @@ function Log(stream) {
   // eslint-disable-next-line consistent-this
   const self = this;
   function log(message, object, level) {
-    // console.log(message, object, level);
     if (typeof object === 'string' || typeof object === 'number') {
       level = object;
       object = { };

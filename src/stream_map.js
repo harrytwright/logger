@@ -1,11 +1,14 @@
+import util from 'util';
 import { Writable } from 'stream';
 
 import _ from 'lodash';
 import { RingBuffer } from 'bunyan';
 
-function StreamMap() {
+// TODO: Remove 2.0.0
+
+const StreamMap = util.deprecate(function() {
   this.map = [];
-}
+}, 'Logger: StreamMap is depreciated. In 2.0.0 this method will be removed');
 
 StreamMap.prototype.saveStreamsForLogger = function(logger) {
   logger.streams

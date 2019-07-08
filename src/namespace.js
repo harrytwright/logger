@@ -40,6 +40,8 @@ function Namespace(base) {
    * */
   namespace.addStream = function() {
     self.base.addStream(...arguments);
+
+    // TODO: Remove 2.0.0
     _streams.saveStreamsForLogger(self.base.logger);
   };
 

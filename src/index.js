@@ -1,30 +1,16 @@
 import fs from 'fs';
-import path from 'path';
+import util from 'util';
 
 import _ from 'lodash';
 import bunyan, { resolveLevel, INFO, stdSerializers } from 'bunyan';
-
-// TODO: Add the abilty to add a new stream to all children loggers
-/**
- * import logger from '@harrytwright/logger';
- * logger.addStream(...);
- * */
 
 import { debug } from './utils';
 import Namespace from './namespace';
 import _streams from './stream_map';
 
-try {
-  // eslint-disable-next-line no-var
-  var RotatingFileStream = require('bunyan-rotating-file-stream');
-} catch (error) {
-  debug(error.message);
-  RotatingFileStream = undefined;
-}
 
 const directory = './var/tmp/log';
 const loggers = { };
-// let _streams = [];
 
 /**
  * Logger is the factory class to create all loggers
@@ -78,42 +64,22 @@ function Logger(name, level = INFO, options) {
 
   _.defaults(opts, createDefaultOptions(name, level));
 
-  debug(`Creating buyan called: ${name} with level: ${level}`);
+  debug(`Creating bunyan called: ${name} with level: ${level}`);
   this.logger = bunyan.createLogger(opts);
 
   // eslint-disable-next-line consistent-this
   const self = this;
-
-  // const saveStreams = function(logger) {
-  //   const streams = logger.streams
-  //     .map((el) => el.stream)
-  //     .filter((el) => el instanceof Writable && !_streams.includes(el));
-  //
-  //   if (streams.length === 0) { return; }
-  //
-  //   debug(`Updating saved streams for ${name}`);
-  //   _streams = _streams.concat(streams);
-  // };
 
   // This purely an interface so we can update our stream list
   this.addStream = function() {
     debug(`Adding new stream ${arguments[0]} to ${self.name}`);
     self.logger.addStream(...arguments);
 
+    // TODO: Remove 2.0.0
     _streams.saveStreamsForLogger(self.logger);
   };
 
-  // addStream({
-  //   level: 'error',
-  //   path: path.join(directory, 'error.log')
-  // });
-  //
-  // if (process.env.NODE_ENV === 'production' && RotatingFileStream) {
-  //   addStream({
-  //     stream: defaultRotatingFileStream(name, roatingOptions)
-  //   });
-  // }
-
+  // TODO: Remove 2.0.0
   _streams.saveStreamsForLogger(this.logger);
 
   const namespace = new Namespace(this);
@@ -146,11 +112,9 @@ const defaultLogger = new Logger(defaultName, defaultLevel);
 module.exports = defaultLogger;
 module.exports.Logger = Logger;
 
-module.exports.defaultotatingFileStreamOptions = defaultotatingFileStreamOptions;
-module.exports.defaultRotatingFileStream = defaultRotatingFileStream;
-module.exports.getAllStreams = () => {
+module.exports.getAllStreams = util.deprecate(() => {
   return _streams.values();
-};
+}, 'Logger: getAllStreams() is depreciated. In 2.0.0 this method will be removed');
 
 /**
  * Defaults
@@ -193,22 +157,6 @@ function createDefaultOptions(name, level) {
       }
     ]
   });
-}
-
-function defaultotatingFileStreamOptions(name) {
-  return {
-    path: path.join(directory, `${name.toLowerCase()}.log`),
-    period: '1d', // daily rotation
-    totalFiles: 10, // keep up to 10 back copies
-    rotateExisting: true, // Give ourselves a clean file when we start up, based on period
-    threshold: '10m', // Rotate log files larger than 10 megabytes
-    totalSize: '20m', // Don't keep more than 20mb of archived log files
-    gzip: true // Compress the archive log files to save space
-  };
-}
-
-function defaultRotatingFileStream(name, options) {
-  return new RotatingFileStream(_.defaults(options, defaultotatingFileStreamOptions(name)));
 }
 
 /**
