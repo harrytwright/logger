@@ -139,7 +139,10 @@ function createDefaultOptions(name, level) {
           method: req.method,
           url: req.url,
           headers: req.headers,
-          remoteAddress: req.connection.remoteAddress,
+          remoteAddress: req.ip ||
+            req._remoteAddress ||
+            (req.connection && req.connection.remoteAddress) ||
+            undefined,
           remotePort: req.connection.remotePort
         };
       },
