@@ -46,6 +46,7 @@ function Namespace(base) {
   };
 
   namespace.level = function() {
+    debug(arguments.length === 1 ? 'Setting new level' : 'Getting level');
     return self.base.logger.level(...arguments);
   };
 

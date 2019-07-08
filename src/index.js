@@ -8,7 +8,6 @@ import { debug } from './utils';
 import Namespace from './namespace';
 import _streams from './stream_map';
 
-
 const directory = './var/tmp/log';
 const loggers = { };
 
@@ -92,15 +91,20 @@ function Logger(name, level = INFO, options) {
 let defaultLevel;
 try {
   defaultLevel = resolveLevel(process.env.LOGGER_LEVEL);
+  debug(`LOGGER_LEVEL is set, default logger is set to ${defaultLevel}`);
 } catch (error) {
-  debug('LOGGER_LEVEL is not set, default logger is set to INFO');
   defaultLevel = INFO;
+  debug('LOGGER_LEVEL is not set, default logger is set to INFO');
 }
 
 let defaultName;
 if (process.env.LOGGER_NAME && typeof process.env.LOGGER_NAME === 'string') {
+  debug('LOGGER_NAME has been set');
+  debug(`Default name '${process.env.LOGGER_NAME}' has been applied`);
   defaultName = process.env.LOGGER_NAME;
 } else if (process.env.npm_package_name) {
+  debug('LOGGER_NAME has not been set');
+  debug(`Default name '${process.env.npm_package_name}' has been applied`);
   defaultName = process.env.npm_package_name;
 } else {
   debug('If running this via pm2 please set LOGGER_NAME to a value');
