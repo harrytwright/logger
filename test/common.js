@@ -27,5 +27,3 @@ const _debug = logger('debug', 'debug');
 _debug('What', 'debug');
 
 debug(ringbuffer.records);
-
-console.log(logger.getAllStreams().length);
