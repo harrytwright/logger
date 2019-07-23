@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import Log from './log';
 import { debug } from './utils';
-import _streams from './stream_map';
+// import _streams from './stream_map';
 
 function Namespace(base) {
   this.base = base;
@@ -40,9 +40,6 @@ function Namespace(base) {
    * */
   namespace.addStream = function() {
     self.base.addStream(...arguments);
-
-    // TODO: Remove 2.0.0
-    _streams.saveStreamsForLogger(self.base.logger);
   };
 
   namespace.level = function() {

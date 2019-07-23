@@ -1,6 +1,6 @@
 {
 	"name": "@harrytwright/logger",
-	"version": "1.3.1",
+	"version": "2.0.0",
 	"license": "ISC",
 	"author": "Harry Wright",
 	"main": "./dist/index.js",
@@ -10,7 +10,7 @@
 	},
 	"scripts": {
 		"build": "npm run clear && babel src -d dist --source-maps inline --copy-files",
-		"clear": "rm -R ./dist",
+		"clear": "[ -d \"./dist\" ] && rm -R ./dist || echo \"Build has not run before\"",
 		"prepare": "npm run lint",
 		"prepublishOnly": "npm run build",
 		"postpublish": "npm run clear",
