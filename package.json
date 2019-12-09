@@ -1,6 +1,6 @@
 {
 	"name": "@harrytwright/logger",
-	"version": "2.0.0-beta.0",
+	"version": "2.0.0",
 	"license": "ISC",
 	"author": "Harry Wright",
 	"main": "./dist/index.js",
@@ -9,31 +9,28 @@
 		"url": "https://git@github.com/harrytwright/Logger.git"
 	},
 	"scripts": {
-		"build": "npm run clear && babel src -d dist --source-maps inline --copy-files",
+		"build": "npm run clear && babel lib -d dist --source-maps inline --copy-files",
 		"clear": "[ -d \"./dist\" ] && rm -R ./dist || echo \"Build has not run before\"",
 		"prepare": "npm run lint",
 		"prepublishOnly": "npm run build",
 		"postpublish": "npm run clear",
-		"test": "nodemon test/stress.js --exec babel-node | ./node_modules/.bin/bunyan -o short",
-		"lint": "eslint ./src --fix"
+		"test": "nodemon test/common.js --exec babel-node",
+		"lint": "eslint ./lib --fix"
 	},
 	"dependencies": {
-		"bunyan": "^1.8.12",
-		"lodash": "^4.17.12"
-	},
-	"optionalDependencies": {
-		"debug": "^4.1.1"
+		"console-control-strings": "^1.1.0",
+		"json-parse-better-errors": "^1.0.2"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.2.3",
-		"@babel/core": "^7.2.2",
-		"@babel/node": "^7.2.2",
-		"@babel/polyfill": "^7.2.5",
-		"@babel/preset-env": "^7.2.3",
-		"@babel/register": "^7.0.0",
+		"@babel/cli": "^7.7.5",
+		"@babel/core": "^7.7.5",
+		"@babel/node": "^7.7.4",
+		"@babel/polyfill": "^7.7.0",
+		"@babel/preset-env": "^7.7.6",
+		"@babel/register": "^7.7.4",
 		"eslint": "^5.12.0",
-		"eslint-plugin-import": "^2.17.2",
-		"nodemon": "^1.19.1"
+		"eslint-plugin-import": "^2.19.1",
+		"nodemon": "^1.19.4"
 	},
 	"eslintConfig": {
 		"extends": [
