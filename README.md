@@ -1,21 +1,22 @@
-Logger is a **simple and easy to use bunyan middleman**:
+Logger is a striped [`npmlog`](https://github.com/npm/npmlog) clone
 
 ```javascript
-import logger from 'logger';
+import logger from '@harrytwright/logger';
 
-const log = logger('http:application');
-log('Hello World');
+logger.http('application', 'Hello World');
 ```
 
 # Current Status
 
-Working. Currently as of now the logger is basic so it works, as long as no major bunyan updates as of now we will work.
+> Due to removing bunyan everything works due to all in house
 
-## Future
+Working. Currently as of now the logger is basic.
 
-1) Multi logging tool support
-2) Redis Buffer
-3) Stream Support
+## Roadmap
+
+1) Multiple Streams
+2) Formats
+3) JSON output
 
 # Installation
 
@@ -30,59 +31,54 @@ The standard usage of logger is to call it like so:
 ### ES6
 
 ```javascript
-import logger from 'logger';
+import logger from '@harrytwright/logger';
 
-const log = logger('http:application');
-log('Hello World');
-
-// OR
-
-log.info('Hello World');
+logger.info('application', 'Hello World');
 ```
 
 ### Require
 
 ```javascript
-const logger = require('logger')('http:application');
-logger('Hello World');
-
-// OR
-
-logger.info('Hello World')
+const logger = require('@harrytwright/logger')
+logger.info('application', 'Hello World');
 ```
 
 ## Setting custom levels
 
-> Due to the nature of how the framework is laid out as of now this is not available when setting a global change...
-
 ```javascript
-import logger from 'logger';
+import logger from '@harrytwright/logger';
+
+logger.level = 'verbose'
 
 // Adding the extra option tells the bunyan child it can work with debug calls
-const log = logger('debug:http:application', 'debug');
-log('Hello World', 'debug');
+logger.verbose('application', 'Hello World');
 ```
 
 ## Setting custom streams
 
-> Due to the nature of how the framework is laid out as of now this is not available when setting a global change...
+> Currently only one stream can be set per child log. So if you change the stream
+> you are overwriting the original `process.stderr`.
+>
+> 2.X.X will address this
 
 ```javascript
-import logger from 'logger';
-import { RingBuffer } from 'bunyan';
+import logger from '@harrytwright/logger';
 
-// Adding the extra option tells the bunyan child it can work with debug calls
-const ringbuffer = new RingBuffer({ limit: 100 });
-const log = logger('debug:http:application', 'debug', {
-  streams: [
-    {
-      level: 'trace',
-      type: 'raw', // use 'raw' to get raw log record objects
-      stream: ringbuffer
-    }
-  ]
-});
+logger.stream = TimingStream
 
-log('What', 'debug');
-console.log(ringbuffer.records);
+logger.timing('application', 'Hello World');
+```
+
+## New Log
+
+```javascript
+import logger, { Log } from '@harrytwright/logger';
+
+const log = new Log('MongoDB', 'info')
+log.silly('application', 'Hello World');
+
+// OR 
+
+const log = new logger.Log('MongoDB', 'info')
+log.silly('application', 'Hello World');
 ```
