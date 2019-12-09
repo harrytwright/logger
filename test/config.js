@@ -1,7 +1,6 @@
 const util = require('util');
 
 const debug = util.debuglog('logger');
-const logger = require('../src');
 /**
  * Graceful exit for async STDIO
  */
@@ -19,7 +18,7 @@ function exit(code) {
   }
 
   let draining = 0;
-  const streams = logger.getAllStreams();
+  const streams = [process.stderr, process.stdout];
 
   exit.exited = true;
 

@@ -16,12 +16,3 @@ setTimeout(() => {
 
   process.exit(1);
 }, 500);
-
-// setTimeout(() => {
-//   const internalLog = new logger.Logger('cache')('test');
-//   internalLog('Throwing another error', new Error('Wow again wtf'), 'error');
-//
-//   process.exit(1);
-// }, 1000);
-
-
