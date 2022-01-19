@@ -53,7 +53,7 @@ describe('logging', function () {
 })
 
 describe('custom logger', function () {
-  let log, stream;
+  let log, stream
 
   before(function () {
     stream = customStream()
