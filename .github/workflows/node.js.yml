@@ -19,7 +19,7 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ marix.os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
