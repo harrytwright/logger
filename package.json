@@ -3,127 +3,27 @@
 	"version": "2.0.1",
 	"license": "ISC",
 	"author": "Harry Wright",
-	"main": "./dist/index.js",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "https://git@github.com/harrytwright/Logger.git"
 	},
 	"scripts": {
-		"build": "npm run clear && babel lib -d dist --source-maps inline --copy-files",
-		"clear": "[ -d \"./dist\" ] && rm -R ./dist || echo \"Build has not run before\"",
 		"prepare": "npm run lint",
-		"prepublishOnly": "npm run build",
-		"postpublish": "npm run clear",
-		"test": "nodemon test/common.js --exec babel-node",
-		"lint": "eslint ./lib --fix"
-	},
-	"dependencies": {
-		"console-control-strings": "^1.1.0",
-		"json-parse-better-errors": "^1.0.2"
+		"lint": "standard --fix",
+		"test": "mocha"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.7.5",
-		"@babel/core": "^7.7.5",
-		"@babel/node": "^7.7.4",
-		"@babel/polyfill": "^7.7.0",
-		"@babel/preset-env": "^7.7.6",
-		"@babel/register": "^7.7.4",
-		"eslint": "^5.12.0",
-		"eslint-plugin-import": "^2.19.1",
-		"nodemon": "^1.19.4"
+		"@types/node": "^17.0.10",
+		"chai": "^4.3.4",
+		"mocha": "^9.1.4",
+		"sinon": "^12.0.1",
+		"standard": "16.0.4"
 	},
-	"eslintConfig": {
-		"extends": [
-			"eslint:recommended"
-		],
-		"parserOptions": {
-			"ecmaVersion": 9,
-			"sourceType": "module"
-		},
-		"env": {
-			"node": true,
-			"mocha": true,
-			"es6": true
-		},
-		"plugins": [
-			"import"
-		],
-		"rules": {
-			"import/first": [
-				"error",
-				{
-					"absolute-first": 1
-				}
-			],
-			"import/order": [
-				"error",
-				{
-					"newlines-between": "always"
-				}
-			],
-			"comma-style": "error",
-			"consistent-this": [
-				"error",
-				"_this"
-			],
-			"indent": [
-				"error",
-				2,
-				{
-					"SwitchCase": 1,
-					"VariableDeclarator": 2
-				}
-			],
-			"keyword-spacing": "error",
-			"no-useless-constructor": "warn",
-			"no-buffer-constructor": "warn",
-			"no-console": "off",
-			"no-multi-spaces": "error",
-			"func-call-spacing": "error",
-			"no-trailing-spaces": "error",
-			"no-nested-ternary": "error",
-			"quotes": [
-				"error",
-				"single"
-			],
-			"one-var": [
-				"error",
-				"never"
-			],
-			"prefer-template": "error",
-			"semi": "error",
-			"space-before-blocks": "error",
-			"space-before-function-paren": [
-				"error",
-				"never"
-			],
-			"no-plusplus": "error",
-			"spaced-comment": "warn",
-			"eqeqeq": "error",
-			"space-infix-ops": "error",
-			"space-unary-ops": "error",
-			"no-var": "warn",
-			"prefer-const": "warn",
-			"strict": [
-				"error",
-				"global"
-			],
-			"no-multiple-empty-lines": "error",
-			"space-in-parens": "error",
-			"array-bracket-spacing": "error",
-			"object-curly-newline": "error",
-			"object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"max-len": [
-				"error",
-				{
-					"code": 120,
-					"tabWidth": 2,
-					"comments": 80
-				}
-			]
-		}
+	"standard": {
+		"env": [
+			"mocha"
+		]
 	}
 }
