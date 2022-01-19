@@ -23,14 +23,14 @@
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.7.5",
-		"@babel/core": "^7.7.5",
-		"@babel/node": "^7.7.4",
-		"@babel/polyfill": "^7.7.0",
-		"@babel/preset-env": "^7.7.6",
-		"@babel/register": "^7.7.4",
-		"eslint": "^5.12.0",
-		"eslint-plugin-import": "^2.19.1",
-		"nodemon": "^1.19.4"
+		"@babel/core": "^7.16.7",
+		"@babel/node": "^7.16.8",
+		"@babel/polyfill": "^7.12.1",
+		"@babel/preset-env": "^7.16.8",
+		"@babel/register": "^7.16.9",
+		"eslint": "^8.7.0",
+		"eslint-plugin-import": "^2.25.4",
+		"nodemon": "^2.0.15"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -50,10 +50,7 @@
 		],
 		"rules": {
 			"import/first": [
-				"error",
-				{
-					"absolute-first": 1
-				}
+				"error"
 			],
 			"import/order": [
 				"error",
