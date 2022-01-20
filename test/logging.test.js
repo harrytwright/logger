@@ -25,7 +25,7 @@ function customStream () {
 }
 
 describe('logging', function () {
-  let prev = { ...process.env }
+  const prev = { ...process.env }
 
   before(function () {
     // No need to check stdin either
@@ -69,10 +69,10 @@ describe('logging', function () {
       logger.pause()
 
       logger.info('context', { hello: 'world' }, 'something informative')
-      expect(logger.$__buffer).to.not.be.empty
+      expect(logger.$__buffer).to.not.be.empty // eslint-disable-line
 
       logger.resume()
-      expect(logger.stream.records).to.not.be.empty
+      expect(logger.stream.records).to.not.be.empty // eslint-disable-line
     })
 
     it('should return empty on resuming', function () {
@@ -101,7 +101,7 @@ describe('logging', function () {
 
     // This is more for coverage checks
     it('should handle empty app with trace', function () {
-      let app = logger.app
+      const app = logger.app
       logger.app = null
 
       expect(() => logger.info(null, { trace: 'qwertyuiop' })).to.not.throw()
@@ -111,7 +111,7 @@ describe('logging', function () {
 })
 
 describe('custom logger', function () {
-  let log, stream, prev = { ...process.env }
+  let log; let stream; const prev = { ...process.env }
 
   before(function () {
     process.env.__testing_overide = false
@@ -152,7 +152,7 @@ describe('configuration', function () {
   })
 
   it('should get/set app name', function () {
-    let appName = 'should get/set app name'
+    const appName = 'should get/set app name'
 
     const Log = logger.Log
     const log = new Log()
@@ -165,7 +165,7 @@ describe('configuration', function () {
   })
 
   it('should get/set app level', function () {
-    let appLevel = 'silent'
+    const appLevel = 'silent'
 
     const Log = logger.Log
     const log = new Log()
@@ -178,7 +178,7 @@ describe('configuration', function () {
   })
 
   it('should get/set app stream', function () {
-    let stream = process.stdout
+    const stream = process.stdout
 
     const Log = logger.Log
     const log = new Log()
@@ -199,7 +199,7 @@ describe('error-logging', function () {
   })
 
   it('should log a valid error', function () {
-    let error = new Error('error')
+    const error = new Error('error')
     logger.error('namespace', error)
 
     const record = logger.record.pop()
@@ -214,7 +214,7 @@ describe('error-logging', function () {
  * how you can use string interpolation, or maybe even that ??
  * */
 describe('tracing', function () {
-  let log, stream, prev = { ...process.env }
+  let log; let stream; const prev = { ...process.env }
 
   before(function () {
     stream = customStream()
