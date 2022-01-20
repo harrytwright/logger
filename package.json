@@ -12,12 +12,15 @@
 	"scripts": {
 		"prepare": "npm run lint",
 		"lint": "standard --fix",
-		"test": "mocha"
+		"test": "cross-env NODE_ENV=test mocha",
+		"coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.10",
 		"chai": "^4.3.4",
+		"cross-env": "^7.0.3",
 		"mocha": "^9.1.4",
+		"nyc": "^15.1.0",
 		"sinon": "^12.0.1",
 		"standard": "16.0.4"
 	},
