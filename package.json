@@ -1,6 +1,6 @@
 {
 	"name": "@harrytwright/logger",
-	"version": "3.0.0-beta.1",
+	"version": "3.0.0-beta.2",
 	"license": "ISC",
 	"author": "Harry Wright",
 	"main": "./lib/index.js",
