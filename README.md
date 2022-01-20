@@ -1,5 +1,7 @@
 # @harrytwright/logger
 
+[![Node.js CI](https://github.com/harrytwright/Logger/actions/workflows/node.js.yml/badge.svg)](https://github.com/harrytwright/Logger/actions/workflows/node.js.yml)
+
 Logger is a striped [`npmlog`](https://github.com/npm/npmlog) clone, for personal usage. Removing all deps
 
 ```javascript
