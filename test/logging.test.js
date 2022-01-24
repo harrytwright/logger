@@ -2,12 +2,6 @@
  * Not really important but just nice to test
  * */
 
-const chai = require('chai')
-
-const logger = require('../lib')
-
-const expect = chai.expect
-
 function customStream () {
   let buffer = ''
   const records = []
@@ -25,6 +19,8 @@ function customStream () {
 }
 
 describe('logging', function () {
+  const expect = chai.expect
+
   const prev = { ...process.env }
 
   before(function () {
@@ -111,6 +107,8 @@ describe('logging', function () {
 })
 
 describe('custom logger', function () {
+  const expect = chai.expect
+
   let log; let stream; const prev = { ...process.env }
 
   before(function () {
@@ -137,6 +135,8 @@ describe('custom logger', function () {
 })
 
 describe('configuration', function () {
+  const expect = chai.expect
+
   it('should update max record size', function () {
     const Log = logger.Log
 
@@ -192,6 +192,8 @@ describe('configuration', function () {
 })
 
 describe('error-logging', function () {
+  const expect = chai.expect
+
   before(function () {
     // No need to check stdin either
     // just wipe this
@@ -214,6 +216,8 @@ describe('error-logging', function () {
  * how you can use string interpolation, or maybe even that ??
  * */
 describe('tracing', function () {
+  const expect = chai.expect
+
   let log; let stream; const prev = { ...process.env }
 
   before(function () {

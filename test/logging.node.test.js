@@ -1,7 +1,3 @@
-const chai = require('chai')
-
-const expect = chai.expect
-
 function customStream () {
   let buffer = ''
   const records = []
@@ -18,7 +14,17 @@ function customStream () {
   }
 }
 
+describe('name', function () {
+  const expect = chai.expect
+
+  it('should set logger name to package.json name', function () {
+    expect(logger.app).to.be.eq(require('../package.json').name)
+  })
+})
+
 describe('redaction', function () {
+  const expect = chai.expect
+
   let logger; let log; let stream; const prev = { ...process.env }
 
   before(function () {

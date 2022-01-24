@@ -5,14 +5,24 @@
   "author": "Harry Wright",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "browser": "./logger.js",
+  "unpkg": "./logger.js",
   "repository": {
     "type": "git",
     "url": "https://git@github.com/harrytwright/Logger.git"
   },
+  "files": [
+    "/lib",
+    "logger.js",
+    "logger.min.js"
+  ],
   "scripts": {
     "prepare": "npm run lint",
     "lint": "standard --fix",
-    "test": "cross-env NODE_ENV=test mocha",
+    "test": "cross-env NODE_ENV=test mocha --require ./test/bootstrap/index.js test/uri-redact.test.js test/logging.test.js test/logging.node.test.js",
+    "pretest:browser": "bash build.sh",
+    "test:browser": "karma start karma.conf.js --single-run --browsers HeadlessChrome",
+    "posttest:browser": "rm -r logger.js logger.min.js",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
   },
   "devDependencies": {
@@ -21,6 +31,10 @@
     "chai": "4.3.4",
     "cross-env": "7.0.3",
     "google-closure-compiler": "^20220104.0.0",
+    "karma": "^6.3.11",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-mocha": "2.0.1",
     "mocha": "9.2.0",
     "nyc": "15.1.0",
     "sinon": "12.0.1",
@@ -29,6 +43,10 @@
   "standard": {
     "env": [
       "mocha"
+    ],
+    "global": [
+      "chai",
+      "logger"
     ]
   }
 }
