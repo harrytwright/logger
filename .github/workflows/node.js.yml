@@ -57,3 +57,36 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - run: npm run test:browser
+  coverage:
+    runs-on: ${{ matrix.os }}
+    needs:
+      - node
+      - browser
+
+    strategy:
+      matrix:
+        node-version: [ 10.x, 12.x, 14.x, 16.x ]
+        os: [ ubuntu-latest, macos-latest ]
+
+    env:
+      OS: ${{ matrix.os }}
+      NODE: ${{ matrix.node-version }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+      - name: Install dependencies
+        run: npm ci
+      - run: npm run build --if-present
+      - run: npm coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          env_vars: OS, NODE
+          fail_ci_if_error: true

@@ -53,6 +53,10 @@ describe('redaction', function () {
     expect(record.context.uri).to.be.eq('https://********@localhost:3000/')
   })
 
+  it('should throw on invalid redaction', function () {
+    expect(() => logger.redaction(5)).to.throw()
+  })
+
   it('should add a custom redaction', function () {
     logger.redaction((value) => {
       if (typeof value === 'number') return (value >>> 0).toString(2)
