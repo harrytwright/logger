@@ -54,3 +54,8 @@ jspm_packages/
 #*/.env
 dist
 var
+
+# These are the generated files, they should only be generated via build and
+logger.js
+logger.min.js
+test/logging.browser.test.js

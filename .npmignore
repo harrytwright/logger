@@ -53,3 +53,6 @@ jspm_packages/
 
 var
 test
+
+# No need to bring this into the node package as the minified browser code will be brought along
+./lib/browser.js

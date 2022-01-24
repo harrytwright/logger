@@ -1,32 +1,34 @@
 {
-	"name": "@harrytwright/logger",
-	"version": "3.0.0-beta.2",
-	"license": "ISC",
-	"author": "Harry Wright",
-	"main": "./lib/index.js",
-	"types": "./lib/index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "https://git@github.com/harrytwright/Logger.git"
-	},
-	"scripts": {
-		"prepare": "npm run lint",
-		"lint": "standard --fix",
-		"test": "cross-env NODE_ENV=test mocha",
-		"coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
-	},
-	"devDependencies": {
-		"@types/node": "17.0.10",
-		"chai": "4.3.4",
-		"cross-env": "7.0.3",
-		"mocha": "9.1.4",
-		"nyc": "15.1.0",
-		"sinon": "12.0.1",
-		"standard": "16.0.4"
-	},
-	"standard": {
-		"env": [
-			"mocha"
-		]
-	}
+  "name": "@harrytwright/logger",
+  "version": "3.0.0-beta.2",
+  "license": "ISC",
+  "author": "Harry Wright",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://git@github.com/harrytwright/Logger.git"
+  },
+  "scripts": {
+    "prepare": "npm run lint",
+    "lint": "standard --fix",
+    "test": "cross-env NODE_ENV=test mocha",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.10",
+    "browserify": "17.0.0",
+    "chai": "4.3.4",
+    "cross-env": "7.0.3",
+    "google-closure-compiler": "^20220104.0.0",
+    "mocha": "9.1.4",
+    "nyc": "15.1.0",
+    "sinon": "12.0.1",
+    "standard": "16.0.4"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  }
 }

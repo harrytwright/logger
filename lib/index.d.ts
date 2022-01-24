@@ -117,6 +117,13 @@ declare let stream: WriteStream
 declare let record: LogContext[]
 
 /**
+ * Add a custom redaction function to the fold
+ *
+ * @note This is new and experimental for custom redactions, use at your own risk
+ * */
+declare function redaction(fn: (value: any, redaction: string) => string)
+
+/**
  * The main log class
  * */
 declare class Log extends EventEmitter {
