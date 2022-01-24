@@ -21,7 +21,7 @@
     "chai": "4.3.4",
     "cross-env": "7.0.3",
     "google-closure-compiler": "^20220104.0.0",
-    "mocha": "9.1.4",
+    "mocha": "9.2.0",
     "nyc": "15.1.0",
     "sinon": "12.0.1",
     "standard": "16.0.4"
