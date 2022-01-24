@@ -36,7 +36,6 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm ci
-      - run: npm run build --if-present
       - run: npm test
   browser:
     runs-on: ${{ matrix.os }}
@@ -82,8 +81,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm ci
-      - run: npm run build --if-present
-      - run: npm coverage
+      - run: npm run coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
