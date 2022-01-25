@@ -38,7 +38,7 @@ jobs:
         run: npm ci
       - name: Install Reductions dependencies
         run: npm ci
-        working-directory: /reductions/uri
+        working-directory: ./reductions/uri
       - run: npm test
   browser:
     runs-on: ${{ matrix.os }}
@@ -86,7 +86,7 @@ jobs:
         run: npm ci
       - name: Install Reductions dependencies
         run: npm ci
-        working-directory: /reductions/uri
+        working-directory: ./reductions/uri
       - run: npm run coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

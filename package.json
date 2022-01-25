@@ -33,9 +33,10 @@
   },
   "devDependencies": {
     "@types/node": "17.0.10",
-    "browserify": "17.0.0",
+    "browserify": "^17.0.0",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
+    "envify": "^4.1.0",
     "google-closure-compiler": "20220104.0.0",
     "karma": "6.3.11",
     "karma-chai": "0.1.0",
