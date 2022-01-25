@@ -23,12 +23,20 @@ describe('name', function () {
   it('should set logger name to package.json name', function () {
     expect(logger.app).to.be.eq(require('../package.json').name)
   })
+
+  it('should set a default value if package.json can\'t be found', function () {
+    const log = requireInject('../lib', {
+      [require.resolve(path.join(process.cwd(), './package.json'))]: {}
+    })
+
+    expect(log.app).to.be.eq('logger')
+  })
 })
 
 describe('redaction', function () {
   const expect = chai.expect
 
-  let logger; let log; let stream; const prev = { ...process.env }
+  let log; let stream; const prev = { ...process.env }
 
   before(function () {
     process.env.NODE_ENV = 'production'
@@ -41,7 +49,9 @@ describe('redaction', function () {
         name: 'example',
         '@harrytwright/logger': {
           redactions: [
-            './redactions/uri/index.js'
+            './redactions/uri/index.js',
+            // This technically fixes a coverage, but please ignore the warning
+            'invalid-package'
           ]
         }
       }
@@ -58,15 +68,19 @@ describe('redaction', function () {
     // This is set by package.json
     expect(log.redactions).to.have.lengthOf(1)
 
-    log.verbose('namespace', { uri: 'https://password:password@example.com:3000' }, 'demo %s', 'https://password:password@example.com:3000')
+    log.verbose('namespace', {
+      uri: 'https://password:password@example.com:3000',
+      url:'https://password:password@example.com:3000'
+    }, 'demo %s', 'https://password:password@example.com:3000')
 
     const record = log.record.pop()
     expect(record.message).to.be.eq('demo https://********@example.com:3000/')
     expect(record.context.uri).to.be.eq('https://********@example.com:3000/')
+    expect(record.context.url).to.be.eq('https://********@example.com:3000/')
   })
 
   it('should throw on invalid redaction', function () {
-    expect(() => logger.redaction(5)).to.throw()
+    expect(() => log.redaction(5)).to.throw()
   })
 
   it('should add a custom redaction', function () {

@@ -23,6 +23,7 @@
     "test": "cross-env NODE_ENV=test npm run test:lib && npm run test:redactions",
     "test:lib": "mocha --require ./test/bootstrap/index.js test/logging.test.js test/logging.node.test.js",
     "test:redactions": "mocha redactions/uri/index.test.js",
+    "test:all": "cross-env NODE_ENV=test npm run test && npm run test:browser",
     "pretest:browser": "npm run build",
     "test:browser": "karma start karma.conf.js --single-run --browsers HeadlessChrome",
     "posttest:browser": "rm -r logger.js logger.min.js",
