@@ -9,7 +9,7 @@
   "unpkg": "./logger.min.js",
   "repository": {
     "type": "git",
-    "url": "https://git@github.com/harrytwright/Logger.git"
+    "url": "https://git@github.com/harrytwright/logger.git"
   },
   "files": [
     "/dist/index.js",

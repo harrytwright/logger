@@ -12,6 +12,5 @@ logger.http('application', 'Hello World');
 
 ## Acknowledgments
 
-- [`zeke/redact-url`](https://github.com/zeke/redact-url/blob/master/index.js) For the redaction code
-  > This may be removed in the future to be set via an optional dependency if it exists
+- [`zeke/redact-url`](https://github.com/zeke/redact-url/blob/master/index.js) For the redaction code, see [docs](/redactions/uri) for this
 - [`npm/npmlog`](https://github.com/npm/npmlog) For the template for the simple logging
