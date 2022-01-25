@@ -1,3 +1,6 @@
+const path = require('path')
+const requireInject = require('require-inject')
+
 function customStream () {
   let buffer = ''
   const records = []
@@ -31,16 +34,23 @@ describe('redaction', function () {
     process.env.NODE_ENV = 'production'
     process.env.__testing_overide = false
 
-    delete require.cache[require.resolve('../lib')]
-
     // Use the initial logger so we can use the check the initial redactions are handled
     stream = customStream()
-    log = require('../lib')
+    log = requireInject('../lib', {
+      [require.resolve(path.join(process.cwd(), './package.json'))]: {
+        name: 'example',
+        '@harrytwright/logger': {
+          redactions: [
+            './redactions/uri/index.js'
+          ]
+        }
+      }
+    })
     log.stream = stream
   })
 
   after(function () {
-    delete require.cache[require.resolve('../lib')]
+    // delete require.cache[require.resolve('../lib')]
     process.env = prev
   })
 
