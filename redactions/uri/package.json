@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "Redaction of URI's from production logs",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
+    "lint": "standard index.js --fix",
     "test": "cross-env NODE_ENV=test mocha index.test.js"
   },
   "author": "Harry Wright",
@@ -13,9 +19,6 @@
     "url-regex-safe": "^3.0.0"
   },
   "devDependencies": {
-    "cross-env": "7.0.3",
-    "chai": "4.3.4",
-    "mocha": "9.2.0",
     "standard": "16.0.4"
   },
   "standard": {
