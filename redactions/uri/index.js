@@ -9,10 +9,7 @@
 
 const uri = require('url')
 
-/** @link https://github.com/sindresorhus/ip-regex/blob/main/index.js */
-
-const v4 = '(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}'
-const v4exact = new RegExp(`^${v4}$`)
+const urlRegex = require('url-regex-safe')
 
 /** @link https://github.com/segmentio/is-url/blob/master/index.js */
 
@@ -52,25 +49,6 @@ function isUrl (string) {
     nonLocalhostDomainRE.test(everythingAfterProtocol)
 }
 
-/** @link https://github.com/kevva/url-regex/blob/master/index.js */
-
-const tlds = require('./tlds.json')
-
-function urlRegex (options = { strict: true, exact: true }) {
-  const protocol = `(?:(?:[a-z]+:)?//)${options.strict ? '' : '?'}`
-  const auth = '(?:\\S+(?::\\S*)?@)?'
-  const ip = v4exact.source
-  const host = '(?:(?:[a-z\\u00a1-\\uffff0-9][-_]*)*[a-z\\u00a1-\\uffff0-9]+)'
-  const domain = '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*'
-  const tld = `(?:\\.${options.strict ? '(?:[a-z\\u00a1-\\uffff]{2,})' : `(?:${tlds.sort((a, b) => b.length - a.length).join('|')})`})\\.?`
-  const port = '(?::\\d{2,5})?'
-  const path = '(?:[/?#][^\\s"]*)?'
-  const regex = `(?:${protocol}|www\\.)${auth}(?:localhost|${ip}|${host}${domain}${tld})${port}${path}`
-
-  return options.exact ? new RegExp(`(?:^${regex}$)`, 'i') : new RegExp(regex, 'ig')
-}
-
-/** @link https://github.com/zeke/redact-url/blob/master/index.js */
 module.exports = (input, replacement = 'REDACTED') => {
   const isUrlWithPort = function (val) {
     if (isUrl(val)) return true
@@ -79,7 +57,7 @@ module.exports = (input, replacement = 'REDACTED') => {
       exact: true
     }).test(val)) return true
     return !!val.match && !!(val.match(/^git\+(https?|ssl)/) && urlRegex({
-      strict: true,
+      strict: false,
       exact: false
     }).test(val))
   }

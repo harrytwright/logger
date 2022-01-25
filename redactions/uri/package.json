@@ -1,0 +1,26 @@
+{
+  "name": "@harrytwright/logger-redactions-uri",
+  "version": "1.0.0",
+  "description": "Redaction of URI's from production logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test mocha index.test.js"
+  },
+  "author": "Harry Wright",
+  "license": "MIT",
+  "dependencies": {
+    "re2": "^1.17.3",
+    "url-regex-safe": "^3.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "chai": "4.3.4",
+    "mocha": "9.2.0",
+    "standard": "16.0.4"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  }
+}

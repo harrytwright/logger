@@ -29,14 +29,13 @@ describe('redaction', function () {
 
   before(function () {
     process.env.NODE_ENV = 'production'
-
-    delete require.cache[require.resolve('../lib')]
-    logger = require('../lib')
-
     process.env.__testing_overide = false
 
+    delete require.cache[require.resolve('../lib')]
+
+    // Use the initial logger so we can use the check the initial redactions are handled
     stream = customStream()
-    log = new logger.Log('custom', 'silly')
+    log = require('../lib')
     log.stream = stream
   })
 
@@ -45,12 +44,15 @@ describe('redaction', function () {
     process.env = prev
   })
 
-  it('should work with the default redaction', function () {
-    log.verbose('namespace', { uri: 'https://password:password@localhost:3000' }, 'demo %s', 'https://password:password@localhost:3000')
+  it('should work with a default redaction', function () {
+    // This is set by package.json
+    expect(log.redactions).to.have.lengthOf(1)
+
+    log.verbose('namespace', { uri: 'https://password:password@example.com:3000' }, 'demo %s', 'https://password:password@example.com:3000')
 
     const record = log.record.pop()
-    expect(record.message).to.be.eq('demo https://********@localhost:3000/')
-    expect(record.context.uri).to.be.eq('https://********@localhost:3000/')
+    expect(record.message).to.be.eq('demo https://********@example.com:3000/')
+    expect(record.context.uri).to.be.eq('https://********@example.com:3000/')
   })
 
   it('should throw on invalid redaction', function () {
@@ -58,11 +60,12 @@ describe('redaction', function () {
   })
 
   it('should add a custom redaction', function () {
-    logger.redaction((value) => {
+    log.redaction((value) => {
       if (typeof value === 'number') return (value >>> 0).toString(2)
       return value
     })
 
+    expect(log.redactions).to.have.lengthOf(2)
     log.info('demo', 'binary output for 5 is %s', 10)
 
     const record = log.record.pop()

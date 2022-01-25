@@ -1,5 +1,5 @@
 const assert = require('assert')
-const redact = require('../lib/uri-redact')
+const redact = require('./index')
 
 describe('redact(str)', function () {
   it('returns non-URLs untouched', function () {

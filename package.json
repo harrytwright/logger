@@ -1,7 +1,7 @@
 {
   "name": "@harrytwright/logger",
   "version": "3.0.0-beta.4",
-  "license": "ISC",
+  "license": "MIT",
   "author": "Harry Wright",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -23,7 +23,7 @@
     "prepare": "npm run lint",
     "build": "bash build.sh",
     "lint": "standard --fix",
-    "test": "cross-env NODE_ENV=test mocha --require ./test/bootstrap/index.js test/uri-redact.test.js test/logging.test.js test/logging.node.test.js",
+    "test": "cross-env NODE_ENV=test mocha --require ./test/bootstrap/index.js test/logging.test.js test/logging.node.test.js",
     "pretest:browser": "npm run build",
     "test:browser": "karma start karma.conf.js --single-run --browsers HeadlessChrome",
     "posttest:browser": "rm -r logger.js logger.min.js",
@@ -43,6 +43,7 @@
     "karma-mocha": "2.0.1",
     "mocha": "9.2.0",
     "nyc": "15.1.0",
+    "redact-url": "^0.4.0",
     "sinon": "12.0.1",
     "standard": "16.0.4"
   },
@@ -53,6 +54,12 @@
     "global": [
       "chai",
       "logger"
+    ]
+  },
+  "@harrytwright/logger": {
+    "redactions": [
+      "./redactions/uri/index.js",
+      "something"
     ]
   }
 }

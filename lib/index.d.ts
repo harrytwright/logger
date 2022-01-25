@@ -214,5 +214,10 @@ declare class Log extends EventEmitter {
     get(key: 'level'): LogLevels
     get(key: 'stream'): WriteStream
     get(key: 'maxRecordSize'): number
+
+    /**
+     * Add redactions to the loggers
+     * */
+    redaction(fn: (value: any, redaction: string) => string)
 }
 
