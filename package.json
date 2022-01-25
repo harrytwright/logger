@@ -3,18 +3,17 @@
   "version": "3.0.0-beta.4",
   "license": "MIT",
   "author": "Harry Wright",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
-  "browser": "./logger.js",
-  "unpkg": "./logger.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "browser": "./logger.min.js",
+  "unpkg": "./logger.min.js",
   "repository": {
     "type": "git",
     "url": "https://git@github.com/harrytwright/Logger.git"
   },
   "files": [
-    "/lib/index.js",
-    "/lib/index.d.ts",
-    "logger.js",
+    "/dist/index.js",
+    "/dist/index.d.ts",
     "logger.min.js"
   ],
   "scripts": {
@@ -29,7 +28,7 @@
     "posttest:browser": "rm -r logger.js logger.min.js",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
     "prepublishOnly": "npm run build",
-    "postpublish": "rm -r logger.js logger.min.js"
+    "postpublish": "rm -Rf logger.js logger.min.js ./dist"
   },
   "devDependencies": {
     "@types/node": "17.0.10",
