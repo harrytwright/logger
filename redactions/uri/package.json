@@ -1,6 +1,6 @@
 {
   "name": "@harrytwright/logger-redactions-uri",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redaction of URI's from production logs",
   "main": "index.js",
   "types": "index.d.ts",
@@ -15,7 +15,7 @@
   "author": "Harry Wright",
   "license": "MIT",
   "dependencies": {
-    "re2": "^1.17.3",
+    "re2": "^1.17.4",
     "url-regex-safe": "^3.0.0"
   },
   "devDependencies": {
