@@ -70,7 +70,7 @@ describe('redaction', function () {
 
     log.verbose('namespace', {
       uri: 'https://password:password@example.com:3000',
-      url:'https://password:password@example.com:3000'
+      url: 'https://password:password@example.com:3000'
     }, 'demo %s', 'https://password:password@example.com:3000')
 
     const record = log.record.pop()
