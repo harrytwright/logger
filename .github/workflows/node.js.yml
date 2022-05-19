@@ -64,15 +64,15 @@ jobs:
         run: bash ./scripts/deps.sh
       - name: Run tests
         run: npm |
-        HAS_WORKSPACES=$(node ./scripts/version.js)
-
-        if [ "${HAS_WORKSPACES}" == "TRUE" ]; then
-          npm test --workspaces --if-present
-        else
-          for d in ./redactions/*/ ; do
-            (cd "$d" && npm test --if-present)
-          done
-        fi
+          HAS_WORKSPACES=$(node ./scripts/version.js)
+  
+          if [ "${HAS_WORKSPACES}" == "TRUE" ]; then
+            npm test --workspaces --if-present
+          else
+            for d in ./redactions/*/ ; do
+              (cd "$d" && npm test --if-present)
+            done
+          fi
   browser:
     runs-on: ${{ matrix.os }}
 
