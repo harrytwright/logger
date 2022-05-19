@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "lint": "standard index.js --fix",
+    "prepare": "npm run lint",
     "test": "cross-env NODE_ENV=test mocha index.test.js"
   },
   "author": "Harry Wright",

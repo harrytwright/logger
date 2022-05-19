@@ -47,6 +47,7 @@
     "mocha": "^9.2.2",
     "nyc": "15.1.0",
     "require-inject": "^1.4.4",
+    "semver": "^7.3.7",
     "sinon": "^13.0.1",
     "standard": "16.0.4"
   },
