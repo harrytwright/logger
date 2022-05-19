@@ -20,6 +20,7 @@
     "url-regex-safe": "^3.0.0"
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "standard": "16.0.4"
   },
   "standard": {
