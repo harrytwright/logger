@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "lint": "standard index.js --fix",
-    "test": "cross-env NODE_ENV=test mocha index.test.js"
+    "prepare": "npm run lint",
+    "test": "NODE_ENV=test mocha index.test.js"
   },
   "author": "Harry Wright",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "url-regex-safe": "^3.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "standard": "16.0.4"
   },
   "standard": {

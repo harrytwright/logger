@@ -1,0 +1,47 @@
+# This workflow will do a clean installation of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI - @harrytwright/logger-redactions-*
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - master
+      - 'releases/**'
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  node:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 16.x]
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+      - name: Update npm to 7
+        # If we do test on npm 10 it needs npm7
+        if: startsWith(matrix.node-version, '10.')
+        run: npm i --prefer-online --no-fund --no-audit -g npm@7
+      - name: Update npm to latest
+        if: ${{ !startsWith(matrix.node-version, '10.') }}
+        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+      - name: Install dependencies
+        run: npm ci
+      - name: Run standard tests
+        run: npm test --workspaces --if-present

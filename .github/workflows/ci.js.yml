@@ -34,12 +34,17 @@ jobs:
           always-auth: true
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org
+      - name: Update npm to 7
+        # If we do test on npm 10 it needs npm7
+        if: startsWith(matrix.node-version, '10.')
+        run: npm i --prefer-online --no-fund --no-audit -g npm@7
+      - name: Update npm to latest
+        if: ${{ !startsWith(matrix.node-version, '10.') }}
+        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
       - name: Install dependencies
         run: npm ci
-      - name: Install Reductions dependencies
-        run: npm ci
-        working-directory: ./redactions/uri
-      - run: npm test
+      - name: Run standard tests
+        run: npm test --if-present
   browser:
     runs-on: ${{ matrix.os }}
 
@@ -67,7 +72,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 10.x, 12.x, 14.x, 16.x ]
+        node-version: [ 16.x ]
         os: [ ubuntu-latest, macos-latest ]
 
     env:
@@ -84,9 +89,6 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm ci
-      - name: Install Reductions dependencies
-        run: npm ci
-        working-directory: ./redactions/uri
       - run: npm run coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

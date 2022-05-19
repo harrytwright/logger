@@ -1,6 +1,7 @@
 # @harrytwright/logger
 
-[![Node.js CI](https://github.com/harrytwright/Logger/actions/workflows/node.js.yml/badge.svg)](https://github.com/harrytwright/Logger/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/harrytwright/logger/actions/workflows/ci.js.yml/badge.svg)](https://github.com/harrytwright/logger/actions/workflows/ci.js.yml)
+[![CI - @harrytwright/logger-redactions-*](https://github.com/harrytwright/logger/actions/workflows/redactions.js.yml/badge.svg)](https://github.com/harrytwright/logger/actions/workflows/redactions.js.yml)
 
 Logger is a striped [`npmlog`](https://github.com/npm/npmlog) clone, for personal usage. Removing all deps
 
