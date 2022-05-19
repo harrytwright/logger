@@ -27,7 +27,7 @@
     "test:all": "cross-env NODE_ENV=test npm run test && npm run test:browser",
     "pretest:browser": "npm run build",
     "test:browser": "karma start karma.conf.js --single-run --browsers HeadlessChrome",
-    "posttest:browser": "rm -r logger.js logger.min.js",
+    "posttest:browser": "rm -r logger.js logger.min.js ./dist",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
     "prepublishOnly": "npm run build",
     "postpublish": "rm -Rf logger.js logger.min.js ./dist"
