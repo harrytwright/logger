@@ -22,7 +22,7 @@
   "scripts": {
     "prepare": "npm run lint",
     "build": "bash build.sh",
-    "lint": "standard --fix",
+    "lint": "standard --fix ./lib/**/*.js",
     "test": "cross-env NODE_ENV=test npm run test:lib && npm run test:redactions",
     "test:lib": "mocha --require ./test/bootstrap/index.js test/logging.test.js test/logging.node.test.js",
     "test:all": "cross-env NODE_ENV=test npm run test && npm run test:browser",
