@@ -36,10 +36,10 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm ci
-      - name: Install Reductions dependencies
-        run: npm ci
-        working-directory: ./redactions/uri
-      - run: npm test
+      - name: Run standard tests
+        run: npm test
+      - name: Run redaction tests
+        run: npm test --workspaces --if-present
   browser:
     runs-on: ${{ matrix.os }}
 
@@ -84,9 +84,6 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm ci
-      - name: Install Reductions dependencies
-        run: npm ci
-        working-directory: ./redactions/uri
       - run: npm run coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
