@@ -83,16 +83,16 @@ describe('redaction', function () {
     expect(() => log.redaction(5)).to.throw()
   })
 
-  it('should add a custom redaction', function () {
+  it('should work w/ multiple redactions', function () {
     log.redaction((value) => {
       if (typeof value === 'number') return (value >>> 0).toString(2)
       return value
     })
 
     expect(log.redactions).to.have.lengthOf(2)
-    log.info('demo', 'binary output for 5 is %s', 10)
+    log.info('demo', 'binary output for 5 is %s and %s with %s', 10, 10, 'https://password:password@example.com:3000')
 
     const record = log.record.pop()
-    expect(record.message).to.be.eq('binary output for 5 is 1010')
+    expect(record.message).to.be.eq('binary output for 5 is 1010 and 1010 with https://********@example.com:3000/')
   })
 })
