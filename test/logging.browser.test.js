@@ -10,13 +10,16 @@ describe('redaction', function () {
   const expect = chai.expect
 
   const prev = { ...process.env }
+  const redaction = logger.redact
 
   before(() => {
-    process.env.__testing_overide = true
+    logger.redact = true
+    process.env.__testing_override = true
   })
 
   after(() => {
     process.env = prev
+    logger.redact = redaction
   })
 
   it('should throw on invalid redaction', function () {

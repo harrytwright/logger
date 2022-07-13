@@ -52,7 +52,7 @@ describe('logging', function () {
 
   describe('pausing', function () {
     before(() => {
-      process.env.__testing_overide = false
+      process.env.__testing_override = false
       logger.stream = customStream()
     })
 
@@ -78,7 +78,7 @@ describe('logging', function () {
 
   describe('empty logging', function () {
     before(() => {
-      process.env.__testing_overide = false
+      process.env.__testing_override = false
       logger.stream = customStream()
     })
 
@@ -112,7 +112,7 @@ describe('custom logger', function () {
   let log; let stream; const prev = { ...process.env }
 
   before(function () {
-    process.env.__testing_overide = false
+    process.env.__testing_override = false
 
     stream = customStream()
     log = new logger.Log('custom', 'notice')
@@ -231,7 +231,7 @@ describe('tracing', function () {
   })
 
   it('should log a valid trace', function () {
-    process.env.__testing_overide = false
+    process.env.__testing_override = false
     log.info('namespace', { trace: '12345678910' }, 'Hello world')
 
     const record = log.record.pop()

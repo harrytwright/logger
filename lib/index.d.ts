@@ -74,6 +74,7 @@ declare function silent(namespace: string, ...message: any[]): void
  * Set any configuration value
  * */
 declare function set(key: 'app', value: string)
+declare function set(key: 'redact', value: boolean)
 declare function set(key: 'level', value: LogLevels)
 declare function set(key: 'stream', value: WriteStream)
 declare function set(key: 'maxRecordSize', value: number)
@@ -82,6 +83,7 @@ declare function set(key: 'maxRecordSize', value: number)
  * Get any configuration value
  * */
 declare function get(key: 'app'): string
+declare function get(key: 'redact'): boolean
 declare function get(key: 'level'): LogLevels
 declare function get(key: 'stream'): WriteStream
 declare function get(key: 'maxRecordSize'): number
@@ -105,6 +107,11 @@ declare let level: LogLevels
  * Set/Get the loggers name
  * */
 declare let app: string
+
+/**
+ * Set/Get if the logger is redacting
+ * */
+declare let redact: boolean
 
 /**
  * Set/Get the stream
@@ -132,6 +139,9 @@ declare class Log extends EventEmitter {
 
     // The application now for the logger
     app: string
+
+    // If the application is redacting or not
+    redact: boolean
 
     // The logging level
     level: LogLevels
@@ -206,11 +216,13 @@ declare class Log extends EventEmitter {
     silent(namespace: string, ...message: any[]): void
 
     set(key: 'app', value: string)
+    set(key: 'redact', value: boolean)
     set(key: 'level', value: LogLevels)
     set(key: 'stream', value: WriteStream)
     set(key: 'maxRecordSize', value: number)
 
     get(key: 'app'): string
+    get(key: 'redact'): boolean
     get(key: 'level'): LogLevels
     get(key: 'stream'): WriteStream
     get(key: 'maxRecordSize'): number

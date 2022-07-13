@@ -40,7 +40,7 @@ describe('redaction', function () {
 
   before(function () {
     process.env.NODE_ENV = 'production'
-    process.env.__testing_overide = false
+    process.env.__testing_override = false
 
     // Use the initial logger so we can use the check the initial redactions are handled
     stream = customStream()
