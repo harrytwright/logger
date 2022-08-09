@@ -43,7 +43,7 @@ jobs:
         run: npm i --prefer-online --no-fund --no-audit -g npm@latest
       - name: Install dependencies
         run: npm ci
-      - name: Set Mocha to 9.X
+      - name: Set Mocha to latest-6
         # If we do test on npm 10 it needs npm7
         if: startsWith(matrix.node-version, '10.')
         run: npm i --prefer-online --no-fund --no-audit mocha@latest-6
