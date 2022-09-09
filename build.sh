@@ -19,8 +19,8 @@ echo "$ ${GREEN}google-closure-compiler${RESET} --js logger.js --js_output_file 
 google-closure-compiler --js logger.js --js_output_file logger.min.js --strict_mode_input=false
 
 # Minify the logger code
-echo "$ ${GREEN}google-closure-compiler${RESET} --js ./lib/index.js --js_output_file ./dist/index.js --strict_mode_input=false"
+echo "$ ${GREEN}google-closure-compiler${RESET} --js ./lib/index.js --js_output_file ./dist/index.js --language_out=ECMASCRIPT_2015 --strict_mode_input=false"
 cp ./lib/index.d.ts ./dist/index.d.ts
-google-closure-compiler --js ./lib/index.js --js_output_file ./dist/index.js --strict_mode_input=false
+google-closure-compiler --js ./lib/index.js --js_output_file ./dist/index.js --language_out=ECMASCRIPT_2015 --strict_mode_input=false
 
 mv ./fake.package.json ./package.json

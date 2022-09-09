@@ -5,7 +5,7 @@ if (typeof window === 'object') {
   global = window
 } else {
   global.chai = require('chai')
-  global.logger = require('../../lib/index')
+  global.logger = process.env.MINIFIED ? require('../../dist/index') : require('../../lib/index')
 }
 
 /* eslint-disable */
