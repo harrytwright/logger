@@ -73,11 +73,11 @@ declare function silent(namespace: string, ...message: any[]): void
 /**
  * Set any configuration value
  * */
-declare function set(key: 'app', value: string)
-declare function set(key: 'redact', value: boolean)
-declare function set(key: 'level', value: LogLevels)
-declare function set(key: 'stream', value: WriteStream)
-declare function set(key: 'maxRecordSize', value: number)
+declare function set(key: 'app', value: string): any
+declare function set(key: 'redact', value: boolean): any
+declare function set(key: 'level', value: LogLevels): any
+declare function set(key: 'stream', value: WriteStream): any
+declare function set(key: 'maxRecordSize', value: number): any
 
 /**
  * Get any configuration value
@@ -128,7 +128,7 @@ declare let record: LogContext[]
  *
  * @note This is new and experimental for custom redactions, use at your own risk
  * */
-declare function redaction(fn: (value: any, redaction: string) => string)
+declare function redaction(fn: (value: any, redaction: string) => string): void
 
 /**
  * The main log class
@@ -215,11 +215,11 @@ declare class Log extends EventEmitter {
     silent(namespace: string, context: object, ...message: any[]): void
     silent(namespace: string, ...message: any[]): void
 
-    set(key: 'app', value: string)
-    set(key: 'redact', value: boolean)
-    set(key: 'level', value: LogLevels)
-    set(key: 'stream', value: WriteStream)
-    set(key: 'maxRecordSize', value: number)
+    set(key: 'app', value: string): any
+    set(key: 'redact', value: boolean): any
+    set(key: 'level', value: LogLevels): any
+    set(key: 'stream', value: WriteStream): any
+    set(key: 'maxRecordSize', value: number): any
 
     get(key: 'app'): string
     get(key: 'redact'): boolean
@@ -230,6 +230,6 @@ declare class Log extends EventEmitter {
     /**
      * Add redactions to the loggers
      * */
-    redaction(fn: (value: any, redaction: string) => string)
+    redaction(fn: (value: any, redaction: string) => string): void
 }
 
