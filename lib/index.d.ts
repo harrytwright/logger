@@ -73,11 +73,11 @@ declare function silent(namespace: string, ...message: any[]): void
 /**
  * Set any configuration value
  * */
-declare function set(key: 'app', value: string): any
-declare function set(key: 'redact', value: boolean): any
-declare function set(key: 'level', value: LogLevels): any
-declare function set(key: 'stream', value: WriteStream): any
-declare function set(key: 'maxRecordSize', value: number): any
+declare function set(key: 'app', value: string): void
+declare function set(key: 'redact', value: boolean): void
+declare function set(key: 'level', value: LogLevels): void
+declare function set(key: 'stream', value: WriteStream): void
+declare function set(key: 'maxRecordSize', value: number): void
 
 /**
  * Get any configuration value
@@ -215,11 +215,11 @@ declare class Log extends EventEmitter {
     silent(namespace: string, context: object, ...message: any[]): void
     silent(namespace: string, ...message: any[]): void
 
-    set(key: 'app', value: string): any
-    set(key: 'redact', value: boolean): any
-    set(key: 'level', value: LogLevels): any
-    set(key: 'stream', value: WriteStream): any
-    set(key: 'maxRecordSize', value: number): any
+    set(key: 'app', value: string): void
+    set(key: 'redact', value: boolean): void
+    set(key: 'level', value: LogLevels): void
+    set(key: 'stream', value: WriteStream): void
+    set(key: 'maxRecordSize', value: number): void
 
     get(key: 'app'): string
     get(key: 'redact'): boolean
