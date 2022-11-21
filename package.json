@@ -41,7 +41,7 @@
     "chai": "^4.3.7",
     "cross-env": "7.0.3",
     "envify": "^4.1.0",
-    "google-closure-compiler": "^20221102.0.0",
+    "google-closure-compiler": "^20221102.0.1",
     "karma": "^6.4.1",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "^3.1.1",
@@ -50,7 +50,6 @@
     "nyc": "15.1.0",
     "require-inject": "^1.4.4",
     "semver": "^7.3.8",
-    "sinon": "^14.0.2",
     "standard": "^17.0.0"
   },
   "standard": {
