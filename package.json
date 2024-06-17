@@ -41,7 +41,7 @@
     "chai": "^4.3.7",
     "cross-env": "7.0.3",
     "envify": "^4.1.0",
-    "google-closure-compiler": "^20230206.0.0",
+    "google-closure-compiler": "^20240317.0.0",
     "karma": "^6.4.1",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "^3.1.1",
