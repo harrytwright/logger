@@ -23,8 +23,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
-        os: [ubuntu-latest]
+        node-version: [ 10.x, 18.x, 20.x, 22.x ]
+        os: [ ubuntu-latest ]
 
     steps:
       - uses: actions/checkout@v2
@@ -34,20 +34,18 @@ jobs:
           always-auth: true
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org
+      # This is for backwards compatability, we now have the minimum as 10.x, but we will only test LTS 18-22
       - name: Update npm to 7
         # If we do test on npm 10 it needs npm7
         if: startsWith(matrix.node-version, '10.')
         run: npm i --prefer-online --no-fund --no-audit -g npm@7
-      - name: Update npm to 8
-        if: startsWith(matrix.node-version, '12.')
-        run: npm i --prefer-online --no-fund --no-audit -g npm@8
       - name: Update npm to latest
-        if: ${{ !(startsWith(matrix.node-version, '12.') || startsWith(matrix.node-version, '10.')) }}
+        if: ${{ !(startsWith(matrix.node-version, '10.')) }}
         run: npm i --prefer-online --no-fund --no-audit -g npm@latest
       - name: Install dependencies
         run: npm ci
       - name: Set Mocha to latest-6
-        # If we do test on npm 10 it needs npm7
+        # If we do test on npm 10 it needs to devolved mocha
         if: startsWith(matrix.node-version, '10.')
         run: npm i --prefer-online --no-fund --no-audit mocha@latest-6
       - name: Run standard tests
