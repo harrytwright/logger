@@ -131,6 +131,12 @@ declare let record: LogContext[]
 declare function redaction(fn: (value: any, redaction: string) => string): void
 
 /**
+ * This is experimental, just allows for context injection, for common context properties
+ * rather than writing them per log
+ * */
+declare function __unsafe_inject_context(cb: (ctx: Record<string, any>) => Record<string, any>): void
+
+/**
  * The main log class
  * */
 declare class Log extends EventEmitter {
@@ -231,5 +237,11 @@ declare class Log extends EventEmitter {
      * Add redactions to the loggers
      * */
     redaction(fn: (value: any, redaction: string) => string): void
+
+    /**
+     * This is experimental, just allows for context injection, for common context properties
+     * rather than writing them per log
+     * */
+    __unsafe_inject_context(cb: (ctx: Record<string, any>) => Record<string, any>): void
 }
 

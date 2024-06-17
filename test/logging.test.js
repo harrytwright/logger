@@ -239,4 +239,23 @@ describe('tracing', function () {
 
     expect(stream.records.pop()).to.contains('12345678910')
   })
+
+  //
+  it('should allow for tracing to be added via injections', () => {
+    process.env.__testing_override = false
+
+    log.__unsafe_inject_context(ctx => ({
+      trace: '12345678910'
+    }))
+
+    log.info('namespace', { }, 'Hello world')
+
+    const record = log.record.pop()
+    expect(record.context.trace).to.be.eq('12345678910')
+
+    expect(stream.records.pop()).to.contains('12345678910')
+
+    // Reset
+    log.injections = []
+  });
 })
