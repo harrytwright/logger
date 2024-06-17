@@ -16,7 +16,7 @@
   "author": "Harry Wright",
   "license": "MIT",
   "dependencies": {
-    "re2": "1.18.0",
+    "re2": "1.21.3",
     "url-regex-safe": "3.0.0"
   },
   "devDependencies": {
