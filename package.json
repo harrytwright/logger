@@ -14,6 +14,10 @@
   "files": [
     "/dist/index.js",
     "/dist/index.d.ts",
+    "/dist/next.js",
+    "/dist/browser.js",
+    "/dist/log.js",
+    "/dist/next.d.ts",
     "logger.min.js"
   ],
   "workspaces": [
@@ -33,7 +37,7 @@
     "posttest:browser": "rm -r logger.js logger.min.js ./dist",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
     "prepublishOnly": "npm run build",
-    "postpublish": "rm -Rf logger.js logger.min.js ./dist"
+    "postpublish": "rm -Rf logger.js browser.js logger.min.js ./dist"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",

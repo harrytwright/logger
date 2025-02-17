@@ -57,6 +57,9 @@ describe('redaction', function () {
       }
     })
     log.stream = stream
+
+    // Allow redaction
+    log.redact = true
   })
 
   after(function () {
