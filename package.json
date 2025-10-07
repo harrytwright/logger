@@ -64,5 +64,8 @@
       "chai",
       "logger"
     ]
+  },
+  "dependencies": {
+    "console-control-strings": "^1.1.0"
   }
 }

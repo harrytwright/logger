@@ -5,8 +5,8 @@ A [`CVE-2020-7661`](https://github.com/advisories/GHSA-v4rh-8p82-6h5w) safe vers
 ## Usage
 
 ```javascript
-const logger = require('@harrytwright/logger')
-logger.redactions(require('@harrytwright/logger-redactions-uri'))
+const logger = require("@harrytwright/logger");
+logger.redactions(require("@harrytwright/logger-redactions-uri"));
 ```
 
 Or adding `@harrytwright/logger` and `redactions` to your `package.json`:

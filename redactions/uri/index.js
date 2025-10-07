@@ -45,21 +45,31 @@ function isUrl (string) {
     return false
   }
 
-  return localhostDomainRE.test(everythingAfterProtocol) ||
+  return (
+    localhostDomainRE.test(everythingAfterProtocol) ||
     nonLocalhostDomainRE.test(everythingAfterProtocol)
+  )
 }
 
 module.exports = (input, replacement = 'REDACTED') => {
   const isUrlWithPort = function (val) {
     if (isUrl(val)) return true
-    if (urlRegex({
-      strict: true,
-      exact: true
-    }).test(val)) return true
-    return !!val.match && !!(val.match(/^git\+(https?|ssl)/) && urlRegex({
-      strict: false,
-      exact: false
-    }).test(val))
+    if (
+      urlRegex({
+        strict: true,
+        exact: true
+      }).test(val)
+    ) { return true }
+    return (
+      !!val.match &&
+      !!(
+        val.match(/^git\+(https?|ssl)/) &&
+        urlRegex({
+          strict: false,
+          exact: false
+        }).test(val)
+      )
+    )
   }
 
   // Require a URL or git+protocol URL-esque string
@@ -74,7 +84,7 @@ module.exports = (input, replacement = 'REDACTED') => {
   }
 
   for (const searchParamsKey of url.searchParams.keys()) {
-    if (searchParamsKey.match(/secret|pass|token|key|pwd/i)) url.searchParams.set(searchParamsKey, replacement)
+    if (searchParamsKey.match(/secret|pass|token|key|pwd/i)) { url.searchParams.set(searchParamsKey, replacement) }
   }
 
   return url.toString()

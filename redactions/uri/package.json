@@ -9,7 +9,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "lint": "standard index.js --fix",
+    "lint": "standard index*.js --fix",
     "prepare": "npm run lint",
     "test": "NODE_ENV=test mocha index.test.js"
   },
