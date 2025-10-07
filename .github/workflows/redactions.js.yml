@@ -6,16 +6,16 @@ name: CI - @harrytwright/logger-redactions-*
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
     branches:
       - master
-      - 'releases/**'
+      - "releases/**"
     paths-ignore:
-      - 'README.md'
+      - "README.md"
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths-ignore:
-      - 'README.md'
+      - "README.md"
 
 jobs:
   node:
@@ -23,8 +23,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 10.x, 18.x, 20.x, 22.x ]
-        os: [ ubuntu-latest ]
+        node-version: [20.x, 22.x]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v2

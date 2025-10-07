@@ -2,246 +2,320 @@
  * Very basic d.ts file
  * */
 
-import { EventEmitter } from 'events'
+import { EventEmitter } from "events";
 import { WriteStream } from "tty";
 
-export type LogLevels = 'silly' | 'verbose' | 'info' | 'timing' | 'http' | 'notice' | 'warn' | 'error' | 'silent'
+export type LogLevels =
+  | "silly"
+  | "verbose"
+  | "info"
+  | "timing"
+  | "http"
+  | "notice"
+  | "warn"
+  | "error"
+  | "silent";
 
 export interface LogContext {
-    id: number
-    level: LogLevels
-    message: string
-    namespace: string
-    context: object
+  id: number;
+  level: LogLevels;
+  message: string;
+  namespace: string;
+  context: object;
 }
 
 /**
  * Log any message with the silly level to the stream
  * */
-declare function silly(namespace: string, context: object, ...message: any[]): void
-declare function silly(namespace: string, ...message: any[]): void
+declare function silly(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function silly(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the verbose level to the stream
  * */
-declare function verbose(namespace: string, context: object, ...message: any[]): void
-declare function verbose(namespace: string, ...message: any[]): void
+declare function verbose(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function verbose(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the info level to the stream
  * */
-declare function info(namespace: string, context: object, ...message: any[]): void
-declare function info(namespace: string, ...message: any[]): void
+declare function info(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function info(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the timing level to the stream
  * */
-declare function timing(namespace: string, context: object, ...message: any[]): void
-declare function timing(namespace: string, ...message: any[]): void
+declare function timing(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function timing(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the http level to the stream
  * */
-declare function http(namespace: string, context: object, ...message: any[]): void
-declare function http(namespace: string, ...message: any[]): void
+declare function http(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function http(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the notice level to the stream
  * */
-declare function notice(namespace: string, context: object, ...message: any[]): void
-declare function notice(namespace: string, ...message: any[]): void
+declare function notice(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function notice(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the warn level to the stream
  * */
-declare function warn(namespace: string, context: object, ...message: any[]): void
-declare function warn(namespace: string, ...message: any[]): void
+declare function warn(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function warn(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the error level to the stream
  * */
-declare function error(namespace: string, context: object, ...message: any[]): void
-declare function error(namespace: string, error: Error, ...message: any[]): void
-declare function error(namespace: string, ...message: any[]): void
+declare function error(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function error(
+  namespace: string,
+  error: Error,
+  ...message: any[]
+): void;
+declare function error(namespace: string, ...message: any[]): void;
 
 /**
  * Log any message with the silent level to the stream
  * */
-declare function silent(namespace: string, context: object, ...message: any[]): void
-declare function silent(namespace: string, ...message: any[]): void
+declare function silent(
+  namespace: string,
+  context: object,
+  ...message: any[]
+): void;
+declare function silent(namespace: string, ...message: any[]): void;
 
 /**
  * Set any configuration value
  * */
-declare function set(key: 'app', value: string): void
-declare function set(key: 'redact', value: boolean): void
-declare function set(key: 'level', value: LogLevels): void
-declare function set(key: 'stream', value: WriteStream): void
-declare function set(key: 'maxRecordSize', value: number): void
+declare function set(key: "app", value: string): void;
+declare function set(key: "redact", value: boolean): void;
+declare function set(key: "color", value: boolean): void;
+declare function set(key: "cli", value: boolean): void;
+declare function set(key: "level", value: LogLevels): void;
+declare function set(key: "stream", value: WriteStream): void;
+declare function set(key: "maxRecordSize", value: number): void;
 
 /**
  * Get any configuration value
  * */
-declare function get(key: 'app'): string
-declare function get(key: 'redact'): boolean
-declare function get(key: 'level'): LogLevels
-declare function get(key: 'stream'): WriteStream
-declare function get(key: 'maxRecordSize'): number
+declare function get(key: "app"): string;
+declare function get(key: "redact"): boolean;
+declare function get(key: "color"): boolean;
+declare function get(key: "cli"): boolean;
+declare function get(key: "level"): LogLevels;
+declare function get(key: "stream"): WriteStream;
+declare function get(key: "maxRecordSize"): number;
 
 /**
  * Pause the logger, saving all messages inside the buffer for when it is restarted
  * */
-declare function pause(): void
+declare function pause(): void;
 
 /**
  * Restart the logger, pushing out the buffered messages first
  * */
-declare function resume(): void
+declare function resume(): void;
 
 /**
  * Set/Get the log level
  * */
-declare let level: LogLevels
+declare let level: LogLevels;
 
 /**
  * Set/Get the loggers name
  * */
-declare let app: string
+declare let app: string;
 
 /**
  * Set/Get if the logger is redacting
  * */
-declare let redact: boolean
+declare let redact: boolean;
 
 /**
  * Set/Get the stream
  * */
-declare let stream: WriteStream
+declare let stream: WriteStream;
+
+/**
+ * Set/Get if the logger is used inside a CLI
+ * */
+declare let cli: boolean;
+
+/**
+ * Set/Get if we should use color. Used used when above is true
+ * */
+declare let color: boolean;
 
 /**
  * Access the loggers record
  * */
-declare let record: LogContext[]
+declare let record: LogContext[];
 
 /**
  * Add a custom redaction function to the fold
  *
  * @note This is new and experimental for custom redactions, use at your own risk
  * */
-declare function redaction(fn: (value: any, redaction: string) => string): void
+declare function redaction(fn: (value: any, redaction: string) => string): void;
 
 /**
  * This is experimental, just allows for context injection, for common context properties
  * rather than writing them per log
  * */
-declare function __unsafe_inject_context(cb: (ctx: Record<string, any>) => Record<string, any>): void
+declare function __unsafe_inject_context(
+  cb: (ctx: Record<string, any>) => Record<string, any>,
+): void;
 
 /**
  * The main log class
  * */
 declare class Log extends EventEmitter {
-    // Max size of the record
-    static maxRecordSize: number
+  // Max size of the record
+  static maxRecordSize: number;
 
-    // The application now for the logger
-    app: string
+  // The application now for the logger
+  app: string;
 
-    // If the application is redacting or not
-    redact: boolean
+  // If the application is redacting or not
+  redact: boolean;
 
-    // The logging level
-    level: LogLevels
+  // The logging level
+  level: LogLevels;
 
-    // The stream the log uses
-    stream: WriteStream
+  // The stream the log uses
+  stream: WriteStream;
 
-    // The record holder for the logger
-    record: any[]
+  cli: boolean;
 
-    constructor(app?: string, level?: LogLevels)
+  color: boolean;
 
-    // Pause the logger
-    pause(): void
+  // The record holder for the logger
+  record: any[];
 
-    // Start the logger back up
-    resume(): void
+  constructor(app?: string, level?: LogLevels);
 
-    /**
-     * Log any message with the 'silly' level to the stream
-     * */
-    silly(namespace: string, context: object, ...message: any[]): void
-    silly(namespace: string, ...message: any[]): void
+  // Pause the logger
+  pause(): void;
 
-    /**
-     * Log any message with the 'verbose' level to the stream
-     * */
-    verbose(namespace: string, context: object, ...message: any[]): void
-    verbose(namespace: string, ...message: any[]): void
+  // Start the logger back up
+  resume(): void;
 
-    /**
-     * Log any message with the 'info' level to the stream
-     * */
-    info(namespace: string, context: object, ...message: any[]): void
-    info(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'silly' level to the stream
+   * */
+  silly(namespace: string, context: object, ...message: any[]): void;
+  silly(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'timing' level to the stream
-     * */
-    timing(namespace: string, context: object, ...message: any[]): void
-    timing(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'verbose' level to the stream
+   * */
+  verbose(namespace: string, context: object, ...message: any[]): void;
+  verbose(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'http' level to the stream
-     * */
-    http(namespace: string, context: object, ...message: any[]): void
-    http(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'info' level to the stream
+   * */
+  info(namespace: string, context: object, ...message: any[]): void;
+  info(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'notice' level to the stream
-     * */
-    notice(namespace: string, context: object, ...message: any[]): void
-    notice(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'timing' level to the stream
+   * */
+  timing(namespace: string, context: object, ...message: any[]): void;
+  timing(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'warn' level to the stream
-     * */
-    warn(namespace: string, context: object, ...message: any[]): void
-    warn(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'http' level to the stream
+   * */
+  http(namespace: string, context: object, ...message: any[]): void;
+  http(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'error' level to the stream
-     * */
-    error(namespace: string, context: object, ...message: any[]): void
-    error(namespace: string, error: Error, ...message: any[]): void
-    error(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'notice' level to the stream
+   * */
+  notice(namespace: string, context: object, ...message: any[]): void;
+  notice(namespace: string, ...message: any[]): void;
 
-    /**
-     * Log any message with the 'silent' level to the stream
-     * */
-    silent(namespace: string, context: object, ...message: any[]): void
-    silent(namespace: string, ...message: any[]): void
+  /**
+   * Log any message with the 'warn' level to the stream
+   * */
+  warn(namespace: string, context: object, ...message: any[]): void;
+  warn(namespace: string, ...message: any[]): void;
 
-    set(key: 'app', value: string): void
-    set(key: 'redact', value: boolean): void
-    set(key: 'level', value: LogLevels): void
-    set(key: 'stream', value: WriteStream): void
-    set(key: 'maxRecordSize', value: number): void
+  /**
+   * Log any message with the 'error' level to the stream
+   * */
+  error(namespace: string, context: object, ...message: any[]): void;
+  error(namespace: string, error: Error, ...message: any[]): void;
+  error(namespace: string, ...message: any[]): void;
 
-    get(key: 'app'): string
-    get(key: 'redact'): boolean
-    get(key: 'level'): LogLevels
-    get(key: 'stream'): WriteStream
-    get(key: 'maxRecordSize'): number
+  /**
+   * Log any message with the 'silent' level to the stream
+   * */
+  silent(namespace: string, context: object, ...message: any[]): void;
+  silent(namespace: string, ...message: any[]): void;
 
-    /**
-     * Add redactions to the loggers
-     * */
-    redaction(fn: (value: any, redaction: string) => string): void
+  set(key: "app", value: string): void;
+  set(key: "redact", value: boolean): void;
+  set(key: "color", value: boolean): void;
+  set(key: "cli", value: boolean): void;
+  set(key: "level", value: LogLevels): void;
+  set(key: "stream", value: WriteStream): void;
+  set(key: "maxRecordSize", value: number): void;
 
-    /**
-     * This is experimental, just allows for context injection, for common context properties
-     * rather than writing them per log
-     * */
-    __unsafe_inject_context(cb: (ctx: Record<string, any>) => Record<string, any>): void
+  get(key: "app"): string;
+  get(key: "redact"): boolean;
+  get(key: "color"): boolean;
+  get(key: "cli"): boolean;
+  get(key: "level"): LogLevels;
+  get(key: "stream"): WriteStream;
+  get(key: "maxRecordSize"): number;
+
+  /**
+   * Add redactions to the loggers
+   * */
+  redaction(fn: (value: any, redaction: string) => string): void;
+
+  /**
+   * This is experimental, just allows for context injection, for common context properties
+   * rather than writing them per log
+   * */
+  __unsafe_inject_context(
+    cb: (ctx: Record<string, any>) => Record<string, any>,
+  ): void;
 }
-

@@ -1,1 +1,1 @@
-export default function (value: any, redaction: string): string
+export default function (value: any, redaction: string): string;
